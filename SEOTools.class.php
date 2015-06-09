@@ -7,7 +7,6 @@ libxml_use_internal_errors(true);
 class getGeneral extends DOMDocument {
 	public function pingHost($host) {
 		if (preg_match('/^https?:\/\//', $host)) { $host = preg_replace('/^https?:\/\//', '', $host); }
-		if (preg_match('/^https?:\/\//', $host)) { $host = preg_replace('/^https?:\/\//', '', $host); }
 		$fsock = fsockopen($host, 80, $errno, $errstr, 6);
 		$fsockssl = fsockopen($host, 443, $errno, $errstr, 6);
         if (!$fsock) {
