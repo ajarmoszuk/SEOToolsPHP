@@ -4,19 +4,6 @@ if (array_search(__FILE__, get_included_files()) === 0) { header("HTTP/1.1 403 U
 if (!file_exists(getcwd()."/include/simple_html_dom.php")) { die('simple_html_dom.php was not found. Please re-download version 1.5 at <a href="http://sourceforge.net/projects/simplehtmldom/files/">simplehtmldom.sourceforge.net</a>'); }
 libxml_use_internal_errors(true);
 
-class database {
-	public function saveToDatabase($dbhost, $dbuser, $dbpass, $dbname, $url) {
-		mysql_connect($dbhost, $dbuser, $dbpass);
-		mysql_select_db($dbname);
-		$url = mysql_real_escape_string($url);
-		$ip = $_SERVER['REMOTE_ADDR'];
-		$q1 = "SELECT id FROM seotools";
-		$q1d = mysql_query($q1);
-		if(!$q1d) { mysql_query('CREATE TABLE seotools (id int(11) AUTO_INCREMENT, url varchar(255) NOT NULL, ip varchar(255) NOT NULL, PRIMARY KEY (id))'); }
-		mysql_query('INSERT INTO seotools (url, ip) VALUES ("'.$url.'", "'.$ip.'")') or die(mysql_error());
-	}
-}
-
 class getGeneral extends DOMDocument {
 	public function pingHost($host) {
 		if (preg_match('/^https?:\/\//', $host)) { $host = preg_replace('/^https?:\/\//', '', $host); }
